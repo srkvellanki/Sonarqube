@@ -3,7 +3,7 @@ pipeline{
     stages{        
         stage('Build'){
             steps{
-              sh 'Deploy package'
+              echo 'Deploy package'
             }
         }        
     }
