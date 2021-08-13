@@ -11,7 +11,15 @@ pipeline{
         } 
         stage('Upload to Nexus'){
             steps{
-              sh  "mvn clean package"
+              nexusArtifactUploader artifacts: 
+              [[artifactId: 'maven-project', classifier: '', file: 'maven-project-1.0-SNAPSHOT.war', type: 'war']], 
+              credentialsId: 'Nexus-Credentials', 
+              groupId: 'com.example.maven-project', 
+              nexusUrl: '172.31.40.117:8081',                   
+              nexusVersion: 'nexus3', 
+              protocol: 'http', 
+              repository: 'nexus-maven2-snapshot', 
+              version: '1.0-SNAPSHOT'
             }
         } 
         stage('dev-deploy'){
