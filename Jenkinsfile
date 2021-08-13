@@ -1,8 +1,8 @@
 pipeline {
   agent any  
   stages {
-    stage('maven build') {
-      sh 'mvn clean package'
+    stage('maven build') {      
+      steps{sh 'mvn clean package'}
     }
     stage('Upload to Nexus') {
       steps {
