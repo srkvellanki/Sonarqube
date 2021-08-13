@@ -1,10 +1,26 @@
 pipeline{
     agent any
+    tools{
+        maven 'maven3'
+    }
     stages{        
-        stage('Build'){
+        stage('Maven Build'){
             steps{
-              echo 'Deploy package'
+              sh  "mvn clean package"
             }
-        }        
+        } 
+        stage('Upload to Nexus'){
+            steps{
+              sh  "mvn clean package"
+            }
+        } 
+        stage('dev-deploy'){
+            when{
+                branch "Dev"
+            }
+            steps{
+              echo  "deploy to Dev"
+            }
+        } 
     }
 }
