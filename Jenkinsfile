@@ -27,5 +27,13 @@ pipeline{
               echo  "deploy to Dev"
             }
         } 
+        stage('Master-deploy'){
+            when{
+                branch "Master"
+            }
+            steps{
+              echo  "deploy to Master"
+            }
+        } 
     }
 }
